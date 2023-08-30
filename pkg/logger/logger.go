@@ -104,8 +104,9 @@ func New(
 }
 
 func (l *Logger) With(args ...interface{}) Interface {
-	l.zap.With(args)
-	return l
+	clone := *l
+	clone.zap = clone.zap.With(args...)
+	return &clone
 }
 
 // Debug uses fmt.Sprint to construct and log a message.
@@ -123,7 +124,7 @@ func (l *Logger) Warn(args ...interface{}) {
 	l.zap.Warn(args...)
 }
 
-// Error uses fmt.Sprint to construct and log a mess	age.
+// Error uses fmt.Sprint to construct and log a message.
 func (l *Logger) Error(args ...interface{}) {
 	l.zap.Error(args...)
 }
