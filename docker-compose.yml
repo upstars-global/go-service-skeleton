@@ -1,0 +1,21 @@
+version: '3.1'
+
+services:
+    db:
+        image: postgres
+        healthcheck:
+            interval: 10s
+            timeout: 3s
+            retries: 3
+        environment:
+            POSTGRES_DB: users
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: password
+        ports:
+            - "45432:5432"
+    redis:
+        image: redis
+        ports:
+            - "46379:6379"
+        networks:
+            - local

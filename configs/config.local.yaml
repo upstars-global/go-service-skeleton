@@ -1,0 +1,34 @@
+# application env
+# allowed levels are: local, develop, staging, production
+envName: production
+debug: false
+
+
+# logger configuration
+logger:
+    # log format
+    # allowed formats are: console or json
+    format: "console"
+
+    # debugging level
+    # allowed levels are: fatal, panic, dpanic, error, warn, info, debug, trace: see details: https://github.com/uber-go/zap/blob/master/zapcore/level.go#L71
+    level: "info"
+
+# private api configuration
+api:
+    address: "0.0.0.0:8080"
+    logHTTPRequests: false
+
+# db configuration
+db:
+    host: "localhost"
+    port: 45432
+    username: "postgres"
+    password: "password"
+    name: "users"
+    sslModeDisabled: true
+    maxOpenCons: 50
+    maxIdleCons: 50
+
+    # migrations path
+    migrations: "./internal/repositories/pgsql/migrations/"
