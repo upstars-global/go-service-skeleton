@@ -99,6 +99,8 @@ func New(
 		panic(err)
 	}
 
+	core = core.WithOptions(zap.AddCallerSkip(1))
+
 	logger = &Logger{core.Sugar()}
 	return
 }
